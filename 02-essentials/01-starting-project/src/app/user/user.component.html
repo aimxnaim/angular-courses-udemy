@@ -1,4 +1,4 @@
-<div><button (click)="onSelectedUser()" class="list-group-item">
-    <img [src]="imagePath()" alt="">
-    <span>{{ selectedUser().name }}</span>
+<div><button (click)="onSelectedUser()">
+    <img [src]="imagePath" [alt]="name">
+    <span>{{ name }}</span>
 </button></div>
