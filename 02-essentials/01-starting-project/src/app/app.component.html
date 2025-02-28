@@ -4,12 +4,12 @@
   <ul id="users">
     @for (user of users; track user.id) {
       <li>
-        <app-user [id]="user.id" [avatar]="user.avatar" [name]="user.name" (select)="onSelectedUser($event)"/>
+        <app-user [currentUser]="selectedUser?.id === user.id" [id]="user.id" [avatar]="user.avatar" [name]="user.name" (select)="onSelectedUser($event)"/>
       </li>  
     }
   </ul>
   <ng-container *ngIf="selectedUser; else elseTemplate">
-    <app-task-user [id]="selectedUser.name"></app-task-user>
+    <app-task-user [name]="selectedUser.name" [id]="selectedUser.id"></app-task-user>
   </ng-container>
   <ng-template #elseTemplate>
     <p id="fallback">Select a user to see their tasks</p>

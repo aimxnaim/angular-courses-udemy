@@ -1,4 +1,6 @@
-const dummyTasks = [
+import { Task } from "./task-user.interface";
+
+const dummyTasks: Task[] = [
   {
     id: 't1',
     userId: 'u1',
@@ -23,3 +25,5 @@ const dummyTasks = [
     dueDate: '2024-06-15',
   },
 ]
+
+export { dummyTasks };

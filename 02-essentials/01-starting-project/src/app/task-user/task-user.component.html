@@ -1,1 +1,14 @@
-<div><span>{{ id() }}</span></div>
+<section id="tasks">
+    <header>
+        <h2>{{ name() }}'s Tasks</h2>
+        <menu><button>
+            Add Tasks
+        </button></menu>
+    </header>
+
+    <ul>
+        <li *ngFor="let task of selectedTasks; trackBy: trackByFn">
+            <app-task [task]="task"></app-task>
+        </li>
+    </ul>
+</section>
