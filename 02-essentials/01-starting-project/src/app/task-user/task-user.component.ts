@@ -27,7 +27,10 @@ export class TaskUserComponent {
   trackByFn(index: number, task: any): string {
     return task.id; // ? Assuming each task has a unique 'id'
   }
-  
+
+  onSelectedTask(taskId: any) {
+    this.tasks = this.tasks.filter((task) => task.id !== taskId);
+  } 
 
   
 }
