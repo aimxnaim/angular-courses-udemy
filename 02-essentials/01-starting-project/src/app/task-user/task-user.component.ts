@@ -3,6 +3,7 @@ import { TaskComponent } from './task/task.component';
 import { CommonModule } from '@angular/common';
 import { dummyTasks } from './dummy-tasks';
 import { NewTaskComponent } from './new-task/new-task.component';
+import { CardComponent } from "../shared/card/card.component";
 
 @Component({
   selector: 'app-task-user',
@@ -10,8 +11,9 @@ import { NewTaskComponent } from './new-task/new-task.component';
   imports: [
     TaskComponent,
     CommonModule,
-    NewTaskComponent
-  ],
+    NewTaskComponent,
+    CardComponent
+],
   templateUrl: './task-user.component.html',
   styleUrl: './task-user.component.css'
 })
