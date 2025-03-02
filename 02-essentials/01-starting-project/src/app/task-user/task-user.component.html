@@ -5,7 +5,7 @@
             Add Tasks
         </button></menu>
         @if (isAddingTasks) {
-            <app-new-task (cancel)="onCancellation($event)"></app-new-task>
+            <app-new-task (cancel)="onCancellation($event)" (add)="onAddNewTasks($event)"></app-new-task>
         }
     </header>
 

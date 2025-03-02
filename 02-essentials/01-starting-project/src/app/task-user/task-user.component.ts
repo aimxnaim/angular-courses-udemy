@@ -16,8 +16,8 @@ import { NewTaskComponent } from './new-task/new-task.component';
   styleUrl: './task-user.component.css'
 })
 export class TaskUserComponent {
-  id = input.required<string | undefined>()
-  name = input.required<string | undefined>()
+  id = input.required<string>()
+  name = input.required<string>()
   @Input() avatar : string | undefined
   tasks = dummyTasks
   isAddingTasks: boolean = false;
@@ -43,5 +43,15 @@ export class TaskUserComponent {
     this.isAddingTasks = cancel;;
   }
 
+  onAddNewTasks(newTask: any){
+    this.tasks.push({
+      id: Math.random().toString(),
+      userId: this.id()!,
+      title: newTask.title,
+      summary: newTask.summary,
+      dueDate: newTask.dueDate
+    });
+    this.isAddingTasks = false;
+  }
   
 }
