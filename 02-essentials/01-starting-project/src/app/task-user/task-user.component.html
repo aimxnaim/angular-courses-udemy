@@ -6,13 +6,13 @@
                 Add Tasks
             </button></menu>
             @if (isAddingTasks) {
-                <app-new-task (cancel)="onCancellation($event)" (add)="onAddNewTasks($event)"></app-new-task>
+                <app-new-task [userId]="id()" (close)="onClose($event)" (add)="onAddNewTasks($event)"></app-new-task>
             }
         </header>
     
         <ul>
             <li *ngFor="let task of selectedTasks; trackBy: trackByFn">
-                <app-task [task]="task" (complete)="onSelectedTask($event)"></app-task>
+                <app-task [task]="task"></app-task>
             </li>
         </ul>
     </section>

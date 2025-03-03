@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { dummyTasks } from './dummy-tasks';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { CardComponent } from "../shared/card/card.component";
+import { TaskUserService } from './task-user.service';
 
 @Component({
   selector: 'app-task-user',
@@ -24,35 +25,26 @@ export class TaskUserComponent {
   tasks = dummyTasks
   isAddingTasks: boolean = false;
 
+  constructor(private taskService: TaskUserService) {}
+
   get selectedTasks() {
-    let tasks = this.tasks.filter((task) => task.userId === this.id());
-    return tasks;
+    return this.taskService.onSelectedTask(this.id());
   }
 
   trackByFn(index: number, task: any): string {
     return task.id; // ? Assuming each task has a unique 'id'
   }
 
-  onSelectedTask(taskId: any) {
-    this.tasks = this.tasks.filter((task) => task.id !== taskId);
-  } 
-
   onAddTasks(){
     this.isAddingTasks = true;
   }
 
-  onCancellation(cancel: boolean){
-    this.isAddingTasks = cancel;;
+  onClose(close: boolean){
+    this.isAddingTasks = close;;
   }
 
   onAddNewTasks(newTask: any){
-    this.tasks.push({
-      id: Math.random().toString(),
-      userId: this.id()!,
-      title: newTask.title,
-      summary: newTask.summary,
-      dueDate: newTask.dueDate
-    });
+    this.taskService.addTask(newTask, this.id());
     this.isAddingTasks = false;
   }
   
