@@ -23,7 +23,8 @@ export class TaskUserService {
       });
   }
 
-  completeTask(taskId: any){
-    this.tasks.filter((task) => task.id !== taskId);
-  }
+  completeTask(taskId: string) {
+    this.tasks = this.tasks.filter(task => task.id !== taskId); // ✅ Actually updates the array
+    return this.tasks;
+  }  
 }
