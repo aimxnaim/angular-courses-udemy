@@ -7,10 +7,14 @@ import { type newTaskData } from "./task-user.interface";
 })
 
 export class TaskUserService {
-  tasks = dummyTasks;
+  tasks : any[] = [];
+  
+  constructor() {
+    this.tasks = JSON.parse(localStorage.getItem('tasks') || JSON.stringify(dummyTasks));
+  }
 
   onSelectedTask(userId: any) {
-    return this.tasks.filter((task) => task.userId === userId);
+    return this.tasks.filter((task: any) => task.userId === userId);
   }
 
   addTask(newTask: newTaskData, userId: string){
@@ -21,10 +25,16 @@ export class TaskUserService {
         summary: newTask.summary,
         dueDate: newTask.dueDate
       });
+    this.savedTasks();
   }
 
   completeTask(taskId: string) {
-    this.tasks = this.tasks.filter(task => task.id !== taskId); // ✅ Actually updates the array
+    this.tasks = this.tasks.filter((task :any) => task.id !== taskId); // ✅ Actually updates the array
+    this.savedTasks();
     return this.tasks;
   }  
+
+  savedTasks() {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
 }
