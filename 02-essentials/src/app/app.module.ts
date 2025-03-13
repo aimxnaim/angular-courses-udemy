@@ -5,17 +5,16 @@ import { CommonModule } from "@angular/common";
 import { UserComponent } from "./user/user.component";
 import { HeaderComponent } from "./header/header.component";
 import { BrowserModule } from "@angular/platform-browser";
-import { CardComponent } from "./shared/card/card.component";
 import { FormsModule } from "@angular/forms";
 import { NewTaskComponent } from "./task-user/new-task/new-task.component";
 import { TaskComponent } from "./task-user/task/task.component";
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
         UserComponent,
-        CardComponent,
         TaskUserComponent,
         NewTaskComponent,
         TaskComponent
@@ -23,7 +22,8 @@ import { TaskComponent } from "./task-user/task/task.component";
     imports: [
         CommonModule,
         BrowserModule,
-        FormsModule
+        FormsModule,
+        SharedModule
     ],
     providers: [],
     bootstrap: [
