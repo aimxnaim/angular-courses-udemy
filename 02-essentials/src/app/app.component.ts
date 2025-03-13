@@ -7,13 +7,6 @@ import { TaskUserComponent } from './task-user/task-user.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    UserComponent,
-    CommonModule,
-    TaskUserComponent
-  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
