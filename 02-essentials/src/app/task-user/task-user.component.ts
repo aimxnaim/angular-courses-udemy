@@ -8,13 +8,6 @@ import { TaskUserService } from './task-user.service';
 
 @Component({
   selector: 'app-task-user',
-  standalone: true,
-  imports: [
-    TaskComponent,
-    CommonModule,
-    NewTaskComponent,
-    CardComponent
-],
   templateUrl: './task-user.component.html',
   styleUrl: './task-user.component.css'
 })

@@ -5,18 +5,26 @@ import { CommonModule } from "@angular/common";
 import { UserComponent } from "./user/user.component";
 import { HeaderComponent } from "./header/header.component";
 import { BrowserModule } from "@angular/platform-browser";
+import { CardComponent } from "./shared/card/card.component";
+import { FormsModule } from "@angular/forms";
+import { NewTaskComponent } from "./task-user/new-task/new-task.component";
+import { TaskComponent } from "./task-user/task/task.component";
 
 @NgModule({
     declarations: [
-        AppComponent
-    ],
-    imports: [
+        AppComponent,
         HeaderComponent,
         UserComponent,
-        CommonModule,
+        CardComponent,
         TaskUserComponent,
-        BrowserModule
-      ],
+        NewTaskComponent,
+        TaskComponent
+    ],
+    imports: [
+        CommonModule,
+        BrowserModule,
+        FormsModule
+    ],
     providers: [],
     bootstrap: [
         AppComponent
