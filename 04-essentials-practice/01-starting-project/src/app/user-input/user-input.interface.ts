@@ -4,3 +4,12 @@ export interface UserInput {
     expectedReturn: number, 
     duration: number
 }
+
+export interface investmentData {
+    year: number,
+    interest: number,
+    valueEndOfYear: number,
+    annualInvestment: number,
+    totalInterest: number,
+    totalAmountInvested: number,
+  }
