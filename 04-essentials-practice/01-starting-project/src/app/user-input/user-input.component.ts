@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserInputService } from './user-input.service';
+import { UserInput } from './user-input.interface';
 
 @Component({
   selector: 'app-user-input',
@@ -12,17 +13,18 @@ import { UserInputService } from './user-input.service';
   styleUrl: './user-input.component.css'
 })
 export class UserInputComponent {
-  initialInvestment : number = 0;
-  annualInvestment : number = 0;
-  expectedReturn : number = 0;
-  duration : number = 0;
-
-  constructor(
-    protected userInputService: UserInputService
-  ) { }
+  initialInvestment : string = '';
+  annualInvestment : string = '';
+  expectedReturn : string = '';
+  duration : string = '';
+  @Output() calculate = new EventEmitter<UserInput>();
 
   onSubmit() {
-    let annualData = this.userInputService.calculateInvestmentResults(this.initialInvestment, this.annualInvestment, this.expectedReturn, this.duration);
-    console.log(annualData);
+    this.calculate.emit({
+      initialInvestment: +this.initialInvestment,
+      annualInvestment: +this.annualInvestment,
+      expectedReturn: +this.expectedReturn,
+      duration: +this.duration
+    })
   }
 }
