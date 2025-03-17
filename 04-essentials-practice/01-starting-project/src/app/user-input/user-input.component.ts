@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { UserInputService } from './user-input.service';
 
 @Component({
   selector: 'app-user-input',
@@ -15,31 +16,13 @@ export class UserInputComponent {
   annualInvestment : number = 0;
   expectedReturn : number = 0;
   duration : number = 0;
+
+  constructor(
+    protected userInputService: UserInputService
+  ) { }
+
   onSubmit() {
-    let annualData = this.calculateInvestmentResults();
+    let annualData = this.userInputService.calculateInvestmentResults(this.initialInvestment, this.annualInvestment, this.expectedReturn, this.duration);
     console.log(annualData);
-  }
-
-  calculateInvestmentResults() {
-    const annualData = [];
-    let investmentValue = this.initialInvestment;
-
-    for (let i = 0; i < this.duration; i++) {
-      const year = i + 1;
-      const interestEarnedInYear = investmentValue * (this.expectedReturn / 100);
-      investmentValue += interestEarnedInYear + this.annualInvestment;
-      const totalInterest =
-        investmentValue - this.annualInvestment * year - this.initialInvestment;
-      annualData.push({
-        year: year,
-        interest: interestEarnedInYear,
-        valueEndOfYear: investmentValue,
-        annualInvestment: this.annualInvestment,
-        totalInterest: totalInterest,
-        totalAmountInvested: this.initialInvestment + this.annualInvestment * year,
-      });
-    }
-
-    return annualData;
   }
 }
