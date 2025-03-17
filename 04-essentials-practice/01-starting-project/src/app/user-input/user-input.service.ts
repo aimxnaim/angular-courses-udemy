@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserInput } from './user-input.interface';
+import type { UserInput } from './user-input.interface';
 
 @Injectable({
   providedIn: 'root'
