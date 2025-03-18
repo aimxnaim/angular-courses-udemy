@@ -1,4 +1,4 @@
-@if (!annualData) {
+@if (!annualData()) {
     <p class="center">Please enter some values and press "Calculate".</p>
 } @else {
     <table>
@@ -12,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let data of annualData">
+            <tr *ngFor="let data of annualData()">
                 <td>{{ data.year }}</td>
                 <td>{{ data.valueEndOfYear | currency:'MYR':true }}</td>
                 <td>{{ data.interest | currency:'MYR':true }}</td>

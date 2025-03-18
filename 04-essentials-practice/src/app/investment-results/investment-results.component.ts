@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { investmentData } from '../user-input/user-input.interface';
 import { CommonModule } from '@angular/common';
 
@@ -12,5 +12,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './investment-results.component.css'
 })
 export class InvestmentResultsComponent {
-  @Input() annualData?: investmentData[];
+  annualData = input<investmentData[] | undefined>(undefined)
 }
