@@ -16,8 +16,7 @@ export class UserInputService {
       const year = i + 1;
       const interestEarnedInYear = investmentValue * (expectedReturn / 100);
       investmentValue += interestEarnedInYear + annualInvestment;
-      const totalInterest =
-        investmentValue - annualInvestment * year - initialInvestment;
+      const totalInterest = investmentValue - annualInvestment * year - initialInvestment;
       annualData.push({
         year: year,
         interest: interestEarnedInYear,
