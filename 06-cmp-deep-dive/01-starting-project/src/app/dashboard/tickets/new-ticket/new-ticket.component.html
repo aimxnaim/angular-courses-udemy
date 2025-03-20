@@ -1,12 +1,10 @@
-<form id="ticket">
-    <p>
-        <label for="title">Title</label>
-        <input name="title" id="title" type="text">
-    </p>
-    <p>
-        <label for="request">Request</label>
-        <textarea name="request" id="request" rows="3"></textarea>
-    </p>
+<form>
+    <app-control label="Title" for="title">
+      <input name="title" id="title" type="text">
+    </app-control>
+    <app-control label="Request" for="request">
+      <textarea name="request" id="request" rows="3"></textarea>
+    </app-control>
     <p>
         <app-button buttonTitle="Submit"></app-button>
     </p>
