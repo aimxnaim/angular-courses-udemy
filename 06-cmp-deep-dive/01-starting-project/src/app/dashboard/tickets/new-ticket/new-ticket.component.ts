@@ -8,7 +8,10 @@ import { ControlComponent } from "../../shared/control/control.component";
   imports: [ButtonComponent, ControlComponent],
   templateUrl: './new-ticket.component.html',
   styleUrl: './new-ticket.component.css',
-  encapsulation: ViewEncapsulation.Emulated
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    id: 'new-ticket'
+  }
 })
 export class NewTicketComponent {
 
