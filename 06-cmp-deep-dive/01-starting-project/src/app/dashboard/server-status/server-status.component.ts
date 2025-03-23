@@ -9,5 +9,21 @@ import { DashboardItemComponent } from "../dashboard-item/dashboard-item.compone
   styleUrl: './server-status.component.css'
 })
 export class ServerStatusComponent {
-  currentStatus = 'online';
+  currentStatus: 'online' | 'offline' | 'unknown' = 'offline';
+
+  constructor() {
+    setInterval(() => {
+      this.checkServerStatus();
+    }, 1000);
+   }
+
+   checkServerStatus() {
+    if (Math.random() < 0.5) {
+      this.currentStatus = 'online';
+    } else if(Math.random() < 0.9) {
+      this.currentStatus = 'offline';
+    } else {
+      this.currentStatus = 'unknown';
+    }
+   }
 }
