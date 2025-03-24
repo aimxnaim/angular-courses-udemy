@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DashboardItemComponent } from "../dashboard-item/dashboard-item.component";
 
 @Component({
@@ -8,14 +8,10 @@ import { DashboardItemComponent } from "../dashboard-item/dashboard-item.compone
   templateUrl: './server-status.component.html',
   styleUrl: './server-status.component.css'
 })
-export class ServerStatusComponent {
+export class ServerStatusComponent implements OnInit {
   currentStatus: 'online' | 'offline' | 'unknown' = 'offline';
 
-  constructor() {
-    setInterval(() => {
-      this.checkServerStatus();
-    }, 1000);
-   }
+  constructor() {}
 
    checkServerStatus() {
     if (Math.random() < 0.5) {
@@ -26,4 +22,11 @@ export class ServerStatusComponent {
       this.currentStatus = 'unknown';
     }
    }
+
+   ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    setInterval(() => {
+      this.checkServerStatus();
+    }, 1000);   }
 }
