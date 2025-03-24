@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnDestroy, OnInit } from '@angular/core';
 import { DashboardItemComponent } from "../dashboard-item/dashboard-item.component";
 
 @Component({
@@ -10,6 +10,8 @@ import { DashboardItemComponent } from "../dashboard-item/dashboard-item.compone
 })
 export class ServerStatusComponent implements OnInit {
   currentStatus: 'online' | 'offline' | 'unknown' = 'offline';
+  private interval?: ReturnType<typeof setInterval>;
+  private destroyRef = inject(DestroyRef);
 
   constructor() {}
 
@@ -26,7 +28,20 @@ export class ServerStatusComponent implements OnInit {
    ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    setInterval(() => {
+    this.interval = setInterval(() => {
       this.checkServerStatus();
-    }, 1000);   }
+    }, 1000);  
+    
+    this.destroyRef.onDestroy(() => {
+      clearInterval(this.interval);
+    });
+  }
+
+    
+// ? below code is for ngOnDestroy() method
+    // ngOnDestroy(): void {
+    //   //Called once, before the instance is destroyed.
+    //   //Add 'implements OnDestroy' to the class.
+    //   clearInterval(this.interval);
+    // }
 }
