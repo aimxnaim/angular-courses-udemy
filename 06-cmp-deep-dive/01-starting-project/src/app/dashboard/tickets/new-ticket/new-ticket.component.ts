@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ButtonComponent } from "../../shared/button/button.component";
 import { ControlComponent } from "../../shared/control/control.component";
 import { FormsModule } from '@angular/forms';
@@ -17,8 +17,9 @@ import { FormsModule } from '@angular/forms';
 export class NewTicketComponent {
   title!: string;
   request!: string;
+  @ViewChild('ticketForm') ticketForm!: ElementRef<HTMLFormElement>;
 
-  onSubmit(titleInput: HTMLInputElement) {
-    console.dir(titleInput.value)
+  onSubmit() {
+    this.ticketForm.nativeElement.reset();
   }
 }
