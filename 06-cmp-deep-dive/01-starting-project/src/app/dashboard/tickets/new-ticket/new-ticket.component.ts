@@ -19,7 +19,8 @@ export class NewTicketComponent {
   request!: string;
   @ViewChild('ticketForm') ticketForm!: ElementRef<HTMLFormElement>;
 
-  onSubmit() {
-    this.ticketForm.nativeElement.reset();
+  onSubmit(form : HTMLFormElement) {
+    // this.ticketForm.nativeElement.reset();
+    form.reset();
   }
 }
