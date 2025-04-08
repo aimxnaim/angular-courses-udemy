@@ -22,7 +22,7 @@ export class ControlComponent implements AfterContentInit {
   }
 
   onClick() {
-    console.log('Control:', this.control());
+    // console.log('Control:', this.control());
   }
 
 
