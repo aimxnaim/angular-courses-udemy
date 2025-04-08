@@ -10,8 +10,11 @@ import { TicketComponent } from "./ticket/ticket.component";
   standalone: true,
   imports: [DashboardItemComponent, NewTicketComponent, CommonModule, TicketComponent],
   templateUrl: './tickets.component.html',
-  styleUrl: './tickets.component.css',
-  encapsulation: ViewEncapsulation.Emulated
+  styleUrls: ['./tickets.component.css'], // <-- fixed
+  encapsulation: ViewEncapsulation.ShadowDom,
+  host: {
+    id: 'tickets'
+  }
 })
 export class TicketsComponent {
   tickets: Ticket[] = [];
@@ -28,7 +31,7 @@ export class TicketsComponent {
     console.log('New ticket added:', this.tickets);
   }
 
-  trackById(){
-    return (index: number, ticket: Ticket) => ticket.id;
-  }
+  trackById(index: number, item: Ticket): number {
+    return Number(item.id); // or item.id, but this is more performant
+  }  
 }
