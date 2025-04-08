@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { DashboardItemComponent } from "../dashboard-item/dashboard-item.component";
 import { NewTicketComponent } from "./new-ticket/new-ticket.component";
+import { Ticket } from './ticket.model';
 
 @Component({
   selector: 'app-tickets',
@@ -11,5 +12,5 @@ import { NewTicketComponent } from "./new-ticket/new-ticket.component";
   encapsulation: ViewEncapsulation.Emulated
 })
 export class TicketsComponent {
-
+  tickets: Ticket[] = [];
 }
