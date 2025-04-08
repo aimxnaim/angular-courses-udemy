@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { DashboardItemComponent } from "../dashboard-item/dashboard-item.component";
 
 @Component({
@@ -9,7 +9,7 @@ import { DashboardItemComponent } from "../dashboard-item/dashboard-item.compone
   styleUrl: './server-status.component.css'
 })
 export class ServerStatusComponent implements OnInit {
-  currentStatus: 'online' | 'offline' | 'unknown' = 'offline';
+  currentStatus = signal<'online' | 'offline' | 'unknown'>('offline');
   private interval?: ReturnType<typeof setInterval>;
   private destroyRef = inject(DestroyRef);
 
@@ -17,11 +17,11 @@ export class ServerStatusComponent implements OnInit {
 
    checkServerStatus() {
     if (Math.random() < 0.5) {
-      this.currentStatus = 'online';
+      this.currentStatus.set('online');
     } else if(Math.random() < 0.9) {
-      this.currentStatus = 'offline';
+      this.currentStatus.set('offline');
     } else {
-      this.currentStatus = 'unknown';
+      this.currentStatus.set('unknown');
     }
    }
 
