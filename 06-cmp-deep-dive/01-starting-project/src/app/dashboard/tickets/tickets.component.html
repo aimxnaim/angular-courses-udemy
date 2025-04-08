@@ -1,3 +1,15 @@
 <app-dashboard-item [img]="{ src: 'list.png', alt: 'A list of items' }" title="Support Tickets">
+  <div>
+    <ul>
+      <ng-container *ngIf="tickets && tickets.length; else noTickets">
+        <li *ngFor="let item of tickets; trackBy: trackById">
+          <app-ticket [ticket]="item"></app-ticket>
+        </li>
+      </ng-container>
+      <ng-template #noTickets>
+        <li>No tickets available</li>
+      </ng-template>
+    </ul>
+  </div>
   <app-new-ticket (add)="onAdd($event)"></app-new-ticket>
 </app-dashboard-item>
