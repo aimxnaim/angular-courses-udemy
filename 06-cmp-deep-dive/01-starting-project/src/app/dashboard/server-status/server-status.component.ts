@@ -16,9 +16,10 @@ export class ServerStatusComponent implements OnInit {
   constructor() {}
 
    checkServerStatus() {
-    if (Math.random() < 0.5) {
+    const randomValue = Math.random();
+    if (randomValue < 0.5) {
       this.currentStatus.set('online');
-    } else if(Math.random() < 0.9) {
+    } else if (randomValue < 0.9) {
       this.currentStatus.set('offline');
     } else {
       this.currentStatus.set('unknown');
