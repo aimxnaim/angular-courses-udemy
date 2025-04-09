@@ -33,5 +33,22 @@ export class TicketsComponent {
 
   trackById(index: number, item: Ticket): number {
     return Number(item.id); // or item.id, but this is more performant
-  }  
+  }
+
+  onCloseTicket(ticketId: string) {
+    // const ticketIndex = this.tickets.findIndex(ticket => ticket.id === ticketId);
+    // if (ticketIndex !== -1) {
+    //   this.tickets[ticketIndex].status = 'closed';
+    // }
+
+    this.tickets = this.tickets.map((ticket: any) => {
+      if (ticket.id === ticketId) {
+        return {
+          ...ticket,
+          status: 'closed'
+        };
+      } 
+      return ticket;
+    })
+  }
 }

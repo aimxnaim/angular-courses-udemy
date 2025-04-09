@@ -1,4 +1,4 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, Input, output, signal } from '@angular/core';
 import { Ticket } from '../ticket.model';
 
 @Component({
@@ -11,10 +11,14 @@ import { Ticket } from '../ticket.model';
 export class TicketComponent {
   @Input() ticket! : Ticket;
   detailsVisible = signal(false)
+  close = output<void>();
 
   onToggleDetails() {
     // ? will automatically send the old value to the new value
     this.detailsVisible.update((prev) => !prev);
   }
-
+  
+  onMarkCompleted() {
+    this.close.emit();
+  }
 }

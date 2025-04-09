@@ -3,7 +3,7 @@
     <ul>
       <ng-container *ngIf="tickets && tickets.length; else noTickets">
         <li *ngFor="let item of tickets; trackBy: trackById">
-          <app-ticket [ticket]="item"></app-ticket>
+          <app-ticket [ticket]="item" (close)="onCloseTicket(item.id)"></app-ticket>
         </li>
       </ng-container>
       <ng-template #noTickets>
