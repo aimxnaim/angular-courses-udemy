@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
   imports: [AuthComponent, LearningResourcesComponent, CommonModule],
 })
 export class AppComponent {
