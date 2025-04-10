@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './auth.component.html',
-  styleUrl: './auth.component.css',
+  styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent {
   email = signal('');
