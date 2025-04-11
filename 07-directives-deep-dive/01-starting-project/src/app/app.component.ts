@@ -3,13 +3,14 @@ import { LearningResourcesComponent } from './learning-resources/learning-resour
 import { AuthService } from './auth/auth.service';
 import { AuthComponent } from './auth/auth.component';
 import { CommonModule } from '@angular/common';
+import { AuthDirective } from './directives/auth.directive';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [AuthComponent, LearningResourcesComponent, CommonModule],
+  imports: [AuthComponent, LearningResourcesComponent, CommonModule, AuthDirective],
 })
 export class AppComponent {
   private auth = inject(AuthService);
