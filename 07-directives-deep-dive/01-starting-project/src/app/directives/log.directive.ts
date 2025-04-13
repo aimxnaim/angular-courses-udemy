@@ -1,11 +1,21 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef } from '@angular/core';
 
 @Directive({
   selector: '[appLog]',
-  standalone: true
+  standalone: true,
+  host: {
+    '(click)': 'onClick()',
+  }
 })
 export class LogDirective {
 
-  constructor() { }
+  constructor(
+    private el : ElementRef,
+  ) { }
+
+  onClick() {
+    console.log('LogDirective clicked!');
+    console.log(this.el.nativeElement);
+  }
 
 }
