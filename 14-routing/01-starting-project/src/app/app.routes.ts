@@ -23,7 +23,7 @@ export const routes: Routes = [
                 component: TasksComponent    
             },
             {
-                path: 'new/task',
+                path: 'tasks/new',
                 component: NewTaskComponent
             }
         ]
