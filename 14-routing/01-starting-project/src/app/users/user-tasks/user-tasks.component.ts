@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, Input, input, OnChanges, SimpleChanges } from '@angular/core';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -7,14 +7,22 @@ import { UsersService } from '../users.service';
   templateUrl: './user-tasks.component.html',
   styleUrl: './user-tasks.component.css',
 })
-export class UserTasksComponent {
-  userId = input.required<string>();
+export class UserTasksComponent implements OnChanges {
+  @Input() userId!: string;
+  userName!: string;
 
   constructor(
     private userService: UsersService,
   ) {}
 
-  userName = computed(() => {
-    return this.userService.users.find((user) => user.id === this.userId())?.name;
-  })
+  // userName = computed(() => {
+  //   return this.userService.users.find((user) => user.id === this.userId())?.name;
+  // })
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['userId']) {
+      const user = this.userService.users.find((user) => user.id === this.userId)?.name;
+      this.userName = user ? user : 'Unknown User';
+    }
+  }
 }
