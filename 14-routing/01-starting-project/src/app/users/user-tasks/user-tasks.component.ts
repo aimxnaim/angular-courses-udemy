@@ -13,6 +13,7 @@ export class UserTasksComponent implements OnInit {
   // @Input() userId!: string;
   userId!: string;
   userName!: string;
+  @Input() breadcrumb!: string;
 
   constructor(
     private userService: UsersService,
@@ -32,6 +33,7 @@ export class UserTasksComponent implements OnInit {
   // }
 
   ngOnInit(): void {
+    console.log('breadcrumb', this.breadcrumb);
     const subscribe = this.activatedRoute.paramMap.subscribe({
       next: (params) => {
         this.userId = params.get('userId')!;

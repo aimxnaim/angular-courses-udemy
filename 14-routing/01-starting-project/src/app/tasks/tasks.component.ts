@@ -14,6 +14,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 })
 export class TasksComponent implements OnInit {
   @Input() userId!: string;
+  @Input() breadcrumb!: string;
   // @Input() sort?: 'asc' | 'desc';
   sort?: 'asc' | 'desc' = 'asc' ;
 
@@ -38,6 +39,7 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('breadcrumb at task component', this.breadcrumb);
     const subscribe = this.activatedRoute.queryParams.subscribe({
       next: (params) => {
         this.sort = params['sort'];

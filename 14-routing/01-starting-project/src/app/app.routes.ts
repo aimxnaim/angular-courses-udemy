@@ -17,7 +17,11 @@ export const routes: Routes = [
     {
         path: 'users/:userId',
         component: UserTasksComponent,
-        children: userRoutes
+        children: userRoutes,
+        data : {
+            title: 'User Tasks',
+            breadcrumb: 'User Tasks' // ? This is static data, can be used for breadcrumb
+        }
     },
     {
         path: '**',
