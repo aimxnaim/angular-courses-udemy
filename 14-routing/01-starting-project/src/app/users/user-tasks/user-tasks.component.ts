@@ -32,16 +32,26 @@ export class UserTasksComponent {
   //   }
   // }
 
-  // ? Using the resolver function to get the user name
   // ngOnInit(): void {
-  //   const subscribe = this.activatedRoute.paramMap.subscribe({
-  //     next: (params) => {
-  //       this.userId = params.get('userId')!;
-  //       const user = this.userService.users.find((user) => user.id === this.userId)?.name;
-  //       this.userName = user ? user : 'Unknown User';
+  //   // ? Using the resolver function to get the user name
+  //   // const subscribe = this.activatedRoute.paramMap.subscribe({
+  //   //   next: (params) => {
+  //   //     this.userId = params.get('userId')!;
+  //   //     const user = this.userService.users.find((user) => user.id === this.userId)?.name;
+  //   //     this.userName = user ? user : 'Unknown User';
+  //   //   },
+  //   //   error: (error) => {
+  //   //     console.error('Error retrieving user ID:', error);
+  //   //   },
+  //   // })
+
+  //   // ? using resolver to get the data before the route is activated
+  //   const subscribe = this.activatedRoute.data.subscribe({
+  //     next: (data) => {
+  //       console.log('data', data);
   //     },
   //     error: (error) => {
-  //       console.error('Error retrieving user ID:', error);
+  //       console.error('Error retrieving user name:', error);
   //     },
   //   })
 
