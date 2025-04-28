@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, Input, input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, computed, DestroyRef, inject, Input, input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { UsersService } from '../users.service';
 import { ActivatedRoute, ActivatedRouteSnapshot, ResolveFn, RouterLink, RouterOutlet, RouterStateSnapshot } from '@angular/router';
 
@@ -9,17 +9,17 @@ import { ActivatedRoute, ActivatedRouteSnapshot, ResolveFn, RouterLink, RouterOu
   styleUrl: './user-tasks.component.css',
   imports: [RouterOutlet, RouterLink],
 })
-export class UserTasksComponent implements OnInit {
+export class UserTasksComponent {
   // @Input() userId!: string;
-  userId!: string;
-  userName!: string;
+  // userId!: string;
+  @Input() userName!: string;
   @Input() breadcrumb!: string;
 
-  constructor(
-    private userService: UsersService,
-    private activatedRoute: ActivatedRoute,
-    private destroyRef: DestroyRef,
-  ) {}
+  // constructor(
+  //   private userService: UsersService,
+  //   private activatedRoute: ActivatedRoute,
+  //   private destroyRef: DestroyRef,
+  // ) {}
 
   // userName = computed(() => {
   //   return this.userService.users.find((user) => user.id === this.userId())?.name;
@@ -32,29 +32,30 @@ export class UserTasksComponent implements OnInit {
   //   }
   // }
 
-  ngOnInit(): void {
-    console.log('breadcrumb', this.breadcrumb);
-    const subscribe = this.activatedRoute.paramMap.subscribe({
-      next: (params) => {
-        this.userId = params.get('userId')!;
-        console.log('userId', this.userId);
-        const user = this.userService.users.find((user) => user.id === this.userId)?.name;
-        this.userName = user ? user : 'Unknown User';
-      },
-      error: (error) => {
-        console.error('Error retrieving user ID:', error);
-      },
-    })
+  // ? Using the resolver function to get the user name
+  // ngOnInit(): void {
+  //   const subscribe = this.activatedRoute.paramMap.subscribe({
+  //     next: (params) => {
+  //       this.userId = params.get('userId')!;
+  //       const user = this.userService.users.find((user) => user.id === this.userId)?.name;
+  //       this.userName = user ? user : 'Unknown User';
+  //     },
+  //     error: (error) => {
+  //       console.error('Error retrieving user ID:', error);
+  //     },
+  //   })
 
-    // ? Cleanup subscription when the component is destroyed
-    this.destroyRef.onDestroy(() => {
-      subscribe.unsubscribe();
-    });
-  }
+  //   // ? Cleanup subscription when the component is destroyed
+  //   this.destroyRef.onDestroy(() => {
+  //     subscribe.unsubscribe();
+  //   });
+  // }
 
 }
 
-// export const resolveUserName: ResolveFn = (activatedRoute : ActivatedRouteSnapshot, routerState: RouterStateSnapshot) => {
-//   return null
-// }
+export const resolveUserName: ResolveFn<string> = (activatedRoute : ActivatedRouteSnapshot, routerState: RouterStateSnapshot) => {
+  const userService = inject(UsersService);
+  const userName = userService.users.find((user) => user.id === activatedRoute.params['userId'])?.name || 'Unknown User';
+  return userName;
+}
  
