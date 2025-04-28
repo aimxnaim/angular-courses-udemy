@@ -39,7 +39,6 @@ export class TasksComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('breadcrumb at task component', this.breadcrumb);
     const subscribe = this.activatedRoute.queryParams.subscribe({
       next: (params) => {
         this.sort = params['sort'];
