@@ -1,6 +1,6 @@
 import { Component, computed, DestroyRef, Input, input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { UsersService } from '../users.service';
-import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, ResolveFn, RouterLink, RouterOutlet, RouterStateSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-user-tasks',
@@ -37,6 +37,7 @@ export class UserTasksComponent implements OnInit {
     const subscribe = this.activatedRoute.paramMap.subscribe({
       next: (params) => {
         this.userId = params.get('userId')!;
+        console.log('userId', this.userId);
         const user = this.userService.users.find((user) => user.id === this.userId)?.name;
         this.userName = user ? user : 'Unknown User';
       },
@@ -52,3 +53,8 @@ export class UserTasksComponent implements OnInit {
   }
 
 }
+
+// export const resolveUserName: ResolveFn = (activatedRoute : ActivatedRouteSnapshot, routerState: RouterStateSnapshot) => {
+//   return null
+// }
+ 
