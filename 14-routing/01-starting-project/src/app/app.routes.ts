@@ -18,6 +18,7 @@ export const routes: Routes = [
         path: 'users/:userId',
         component: UserTasksComponent,
         children: userRoutes,
+        runGuardsAndResolvers: 'paramsOrQueryParamsChange', // ? This will run the guards and resolvers when the params or query params change
         data : {
             title: 'User Tasks',
             breadcrumb: 'User Tasks' // ? This is static data, can be used for breadcrumb
