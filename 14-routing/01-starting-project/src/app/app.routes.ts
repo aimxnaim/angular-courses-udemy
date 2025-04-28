@@ -41,7 +41,7 @@ export const routes: Routes = [
             userName: resolveUserName // ? This is a resolver function, it will be called before the route is activated
         },
         title: resolveTitle, // ? This is a resolver function, it will be called before the route is activated,
-        canMatch: [dummyCanMatch] // ? This is a canMatch function, it will be called before the route is activated
+        // canMatch: [dummyCanMatch] // ? This is a canMatch function, it will be called before the route is activated
     },
     {
         path: '**',

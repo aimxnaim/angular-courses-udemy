@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 import { TasksComponent } from "../tasks/tasks.component";
-import { NewTaskComponent } from "../tasks/new-task/new-task.component";
+import { NewTaskComponent, canLeaveNewTaskPage } from "../tasks/new-task/new-task.component";
 
 export const routes : Routes = [
     {
@@ -14,6 +14,7 @@ export const routes : Routes = [
     },
     {
         path: 'tasks/new',
-        component: NewTaskComponent
+        component: NewTaskComponent,
+        canDeactivate: [canLeaveNewTaskPage] // ? This is a canDeactivate function, it will be called before the route is deactivated
     }
 ]
