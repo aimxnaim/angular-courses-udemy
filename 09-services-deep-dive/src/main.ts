@@ -4,7 +4,7 @@ import { AppComponent } from './app/app.component';
 import { TasksService } from './app/tasks/tasks.service';
 import { InjectionToken } from '@angular/core';
 
-const TasksServiceToken = new InjectionToken('task-service-token')
+export const TasksServiceToken = new InjectionToken<TasksService>('task-service-token')
 
 bootstrapApplication(AppComponent, {
     providers: [{
